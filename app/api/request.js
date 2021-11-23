@@ -25,14 +25,13 @@ const request = (url, options) =>
     .then(checkStatus)
     .then(parseJSON);
 
-export const post = (url, body, extraHeaders, extraOptions) => {
-  const options = buildBody('POST', body, extraHeaders, extraOptions);
+export const get = (url, extraHeaders, extraOptions) => {
+  const options = build('GET', extraHeaders, extraOptions);
   return request(url, options);
 };
 
-export const buildBody = (method, body, extraHeaders, extraOptions) => ({
+export const build = (method, extraHeaders, extraOptions) => ({
   method,
-  body: JSON.stringify(body),
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
